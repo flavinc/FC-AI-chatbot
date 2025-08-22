@@ -15,7 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #1a1a1a;
             height: 100vh;
-            height: 100dvh; /* Dynamic viewport height for mobile */
+            height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -27,7 +27,7 @@
             width: 90%;
             max-width: 800px;
             height: 90vh;
-            height: 90dvh; /* Dynamic viewport height */
+            height: 90dvh;
             background: rgba(47, 47, 47, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 20px;
@@ -95,7 +95,7 @@
             padding: 15px;
             background: #2f2f2f;
             position: relative;
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            -webkit-overflow-scrolling: touch;
         }
 
         .chat-messages::before {
@@ -111,11 +111,11 @@
         }
 
         .message {
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             display: flex;
             align-items: flex-start;
             animation: slideIn 0.3s ease-out;
-            gap: 8px;
+            gap: 10px;
         }
 
         @keyframes slideIn {
@@ -135,12 +135,12 @@
 
         .message-content {
             max-width: 75%;
-            padding: 12px 16px;
+            padding: 14px 18px;
             border-radius: 18px;
             position: relative;
             word-wrap: break-word;
             word-break: break-word;
-            line-height: 1.5;
+            line-height: 1.6;
             font-size: clamp(14px, 3.5vw, 16px);
         }
 
@@ -157,6 +157,145 @@
             border: 1px solid rgba(64, 224, 158, 0.2);
             border-bottom-left-radius: 5px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Enhanced formatting for bot responses */
+        .message.bot .message-content h1,
+        .message.bot .message-content h2,
+        .message.bot .message-content h3 {
+            color: #40e09e;
+            margin: 12px 0 8px 0;
+            font-weight: 600;
+        }
+
+        .message.bot .message-content h1 {
+            font-size: 1.4em;
+            border-bottom: 2px solid #40e09e;
+            padding-bottom: 5px;
+        }
+
+        .message.bot .message-content h2 {
+            font-size: 1.2em;
+        }
+
+        .message.bot .message-content h3 {
+            font-size: 1.1em;
+        }
+
+        .message.bot .message-content p {
+            margin: 8px 0;
+            line-height: 1.7;
+        }
+
+        .message.bot .message-content ul,
+        .message.bot .message-content ol {
+            margin: 10px 0 10px 20px;
+            padding-left: 0;
+        }
+
+        .message.bot .message-content li {
+            margin: 6px 0;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .message.bot .message-content ul li::before {
+            content: '•';
+            color: #40e09e;
+            font-size: 1.2em;
+            position: absolute;
+            left: -15px;
+        }
+
+        .message.bot .message-content ol li {
+            counter-increment: list-counter;
+        }
+
+        .message.bot .message-content ol {
+            counter-reset: list-counter;
+        }
+
+        .message.bot .message-content ol li::before {
+            content: counter(list-counter) '.';
+            color: #40e09e;
+            font-weight: 600;
+            position: absolute;
+            left: -20px;
+        }
+
+        .message.bot .message-content strong {
+            color: #40e09e;
+            font-weight: 600;
+        }
+
+        .message.bot .message-content em {
+            color: #b8bcc8;
+            font-style: italic;
+        }
+
+        .message.bot .message-content code {
+            background: rgba(40, 40, 40, 0.8);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #40e09e;
+            border: 1px solid rgba(64, 224, 158, 0.2);
+        }
+
+        .message.bot .message-content pre {
+            background: rgba(40, 40, 40, 0.8);
+            padding: 12px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0;
+            border: 1px solid rgba(64, 224, 158, 0.2);
+            font-family: 'Courier New', monospace;
+        }
+
+        .message.bot .message-content pre code {
+            background: none;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+        }
+
+        .message.bot .message-content blockquote {
+            border-left: 3px solid #40e09e;
+            padding-left: 15px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #b8bcc8;
+            background: rgba(64, 224, 158, 0.05);
+            padding: 10px 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .message.bot .message-content hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #40e09e, transparent);
+            margin: 15px 0;
+        }
+
+        .message.bot .message-content table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .message.bot .message-content th,
+        .message.bot .message-content td {
+            border: 1px solid rgba(64, 224, 158, 0.3);
+            padding: 8px;
+            text-align: left;
+        }
+
+        .message.bot .message-content th {
+            background: rgba(64, 224, 158, 0.1);
+            color: #40e09e;
+            font-weight: 600;
         }
 
         .avatar {
@@ -232,7 +371,6 @@
             border-top: 1px solid rgba(64, 224, 158, 0.2);
             position: relative;
             flex-shrink: 0;
-            /* Safe area padding for mobile devices */
             padding-bottom: max(16px, env(safe-area-inset-bottom));
         }
 
@@ -251,13 +389,12 @@
             font-size: clamp(14px, 4vw, 16px);
             outline: none;
             resize: none;
-            min-height: 44px; /* Minimum touch target size */
+            min-height: 44px;
             max-height: 100px;
             transition: all 0.3s ease;
             background: rgba(64, 64, 64, 0.8);
             color: #e5e7eb;
             line-height: 1.4;
-            /* Prevent zoom on iOS */
             -webkit-appearance: none;
         }
 
@@ -286,7 +423,6 @@
             transition: all 0.3s ease;
             font-size: clamp(14px, 4vw, 18px);
             box-shadow: 0 4px 15px rgba(64, 224, 158, 0.3);
-            /* Minimum touch target size */
             min-width: 44px;
             min-height: 44px;
         }
@@ -339,7 +475,6 @@
             75% { transform: translateX(5px); }
         }
 
-        /* Scrollbar styling */
         .chat-messages::-webkit-scrollbar {
             width: 4px;
         }
@@ -393,7 +528,6 @@
             }
         }
 
-        /* Extra small screens */
         @media (max-width: 480px) {
             .message-content {
                 max-width: 90%;
@@ -411,7 +545,6 @@
             }
         }
 
-        /* Landscape orientation on mobile */
         @media (max-height: 500px) and (orientation: landscape) {
             .chat-header {
                 padding: 12px;
@@ -434,22 +567,18 @@
             }
         }
 
-        /* High DPI screens */
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
             .avatar {
                 border-width: 1px;
             }
         }
 
-        /* Dark mode support for devices that prefer it */
         @media (prefers-color-scheme: dark) {
-            /* Already dark themed, but can add specific dark mode enhancements */
             body {
                 background: #0a0a0a;
             }
         }
 
-        /* Reduced motion preference */
         @media (prefers-reduced-motion: reduce) {
             .chat-header::before {
                 animation: none;
@@ -555,6 +684,59 @@
             sendMessage();
         }, { passive: false });
         
+        function formatBotMessage(content) {
+            // Convert markdown-like formatting to HTML
+            let formatted = content;
+            
+            // Convert headings
+            formatted = formatted.replace(/^### (.*$)/gm, '<h3>$1</h3>');
+            formatted = formatted.replace(/^## (.*$)/gm, '<h2>$1</h2>');
+            formatted = formatted.replace(/^# (.*$)/gm, '<h1>$1</h1>');
+            
+            // Convert bold text
+            formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            formatted = formatted.replace(/__(.*?)__/g, '<strong>$1</strong>');
+            
+            // Convert italic text
+            formatted = formatted.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            formatted = formatted.replace(/_(.*?)_/g, '<em>$1</em>');
+            
+            // Convert inline code
+            formatted = formatted.replace(/`([^`]+)`/g, '<code>$1</code>');
+            
+            // Convert code blocks
+            formatted = formatted.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+            
+            // Convert blockquotes
+            formatted = formatted.replace(/^> (.*$)/gm, '<blockquote>$1</blockquote>');
+            
+            // Convert horizontal rules
+            formatted = formatted.replace(/^---$/gm, '<hr>');
+            
+            // Convert unordered lists
+            formatted = formatted.replace(/^[\*\-\+] (.*)$/gm, '<li>$1</li>');
+            formatted = formatted.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+            
+            // Convert ordered lists
+            formatted = formatted.replace(/^\d+\. (.*)$/gm, '<li>$1</li>');
+            // Only replace with ol if it's a numbered list pattern
+            if (formatted.includes('<li>') && /^\d+\./.test(content)) {
+                formatted = formatted.replace(/(<li>.*<\/li>)/s, '<ol>$1</ol>');
+            }
+            
+            // Convert line breaks to paragraphs
+            const paragraphs = formatted.split(/\n\s*\n/);
+            formatted = paragraphs.map(p => {
+                // Don't wrap if already contains HTML tags
+                if (/<[^>]+>/.test(p)) {
+                    return p;
+                }
+                return p.trim() ? `<p>${p.trim()}</p>` : '';
+            }).filter(p => p).join('');
+            
+            return formatted;
+        }
+        
         function addMessage(content, isUser = false) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
@@ -565,7 +747,13 @@
             
             const messageContent = document.createElement('div');
             messageContent.className = 'message-content';
-            messageContent.textContent = content;
+            
+            if (isUser) {
+                messageContent.textContent = content;
+            } else {
+                // Format bot message with proper HTML structure
+                messageContent.innerHTML = formatBotMessage(content);
+            }
             
             messageDiv.appendChild(avatar);
             messageDiv.appendChild(messageContent);
@@ -633,7 +821,7 @@
             
             // Check for exit commands
             if (['exit', 'quit', 'bye'].includes(message.toLowerCase())) {
-                addMessage('Goodbye 👋', false);
+                addMessage('Goodbye! Thanks for chatting with me. 👋', false);
                 return;
             }
             
@@ -656,9 +844,15 @@
                     body: JSON.stringify({
                         contents: [{
                             parts: [{
-                                text: message
+                                text: `Please provide a well-structured, clear, and organized response to: "${message}". Use proper formatting with headings, bullet points, numbered lists, and clear paragraphs where appropriate to make the information easy to understand and follow. Format your response similar to how ChatGPT structures its answers with clear sections and proper organization.`
                             }]
-                        }]
+                        }],
+                        generationConfig: {
+                            temperature: 0.7,
+                            topK: 40,
+                            topP: 0.95,
+                            maxOutputTokens: 2048,
+                        }
                     })
                 });
                 
